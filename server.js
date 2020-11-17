@@ -87,6 +87,7 @@ client.connect(err => {
     // @route   GET /getRentHouseData
     app.get('/getBooking', (req, res) => {
         const email = req.query.email
+        console.log(email)
         bookingListCollection.find({email: email})
             .toArray((err, documents) => {
                 res.send(documents)
@@ -106,7 +107,7 @@ client.connect(err => {
         // @route   patch /update
         app.patch('/update', (req, res) => {
         bookingListCollection.updateOne(
-            { _id: ObjectId(req.body.id) },
+            { _id: ObjectId(req.body._id) },
             {
                 $set: { 'status': req.body.status }
             }
